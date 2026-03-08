@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Live Stream</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+
+body{
+margin:0;
+background:#000;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+video{
+width:90%;
+max-width:900px;
+border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<video id="video" controls autoplay></video>
+
+<script>
+
+const playbackId = "PON_AQUI_TU_PLAYBACK_ID"
+
+const video = document.getElementById("video")
+
+const url = `https://stream.mux.com/${playbackId}.m3u8`
+
+if (Hls.isSupported()) {
+
+const hls = new Hls()
+hls.loadSource(url)
+hls.attachMedia(video)
+
+}
+
+else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+
+video.src = url
+
+}
+
+</script>
+
+</body>
+</html>
+</html>
